@@ -23,7 +23,7 @@ properties:
               type: string
             dir:
               type: string
-          required: ["name", "method", "user", "dir"]
+          required: ["name", "method", "dir"]
           additionalProperties: false
   branches:
     type: array

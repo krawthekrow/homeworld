@@ -141,10 +141,13 @@ def upload_gs(staging, root: str, branch_config: aptbranch.Config):
 def upload_rsync(staging, root: str, branch_config: aptbranch.Config):
     host, path = branch_config.name.split('/', 1)
     target_dir = os.path.join(branch_config.upload_config["dir"], path)
-    user = branch_config.upload_config["user"]
-    if "@" in user or ":" in user:
-        raise Exception("unsupported characters (@ or :) in upload user")
-    dest = "%s@%s:%s" % (user, host, target_dir)
+    if "user" in branch_config.upload_config:
+        user = branch_config.upload_config["user"]
+        if "@" in user or ":" in user:
+            raise Exception("unsupported characters (@ or :) in upload user")
+        dest = "%s@%s:%s" % (user, host, target_dir)
+    else:
+        dest = target_dir
     subprocess.check_call(["rsync", "-avzc", "--progress", "--delete-delay", "--", root + "/", dest])
 
 
