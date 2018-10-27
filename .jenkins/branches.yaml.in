@@ -1,0 +1,9 @@
+upload-targets:
+  - name: local
+    method: rsync
+    dir: /h/binaries
+
+branches:
+  - name: $$_APT_URL_$$/apt/autobuild
+    signing-key: $$_SIGNING_KEY_$$
+    upload-target: local
