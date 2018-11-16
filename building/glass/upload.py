@@ -140,6 +140,7 @@ def upload_gs(staging, root: str, branch_config: aptbranch.Config):
 
 def upload_rsync(staging, root: str, branch_config: aptbranch.Config):
     host, path = branch_config.name.split('/', 1)
+    path_prefix, path = path.rsplit('/', 1)
     target_dir = os.path.join(branch_config.upload_config["dir"], path)
     if "user" in branch_config.upload_config:
         user = branch_config.upload_config["user"]
