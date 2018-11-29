@@ -72,7 +72,7 @@ def sequence_cluster(ops: setup.Operations) -> None:
     ops.add_operation("verify that etcd has launched successfully",
                       iterative_verifier(verify.check_etcd_health, 120.0))
     ops.add_operation("verify that kubernetes has launched successfully",
-                      iterative_verifier(verify.check_kube_health, 120.0))
+                      iterative_verifier(verify.check_kube_health, 1200.0))
 
     ops.add_operation("verify that acis can be pulled from the registry", iterative_verifier(verify.check_aci_pull, 60.0))
     ops.add_operation("verify that flannel is online", iterative_verifier(verify.check_flannel, 210.0))
